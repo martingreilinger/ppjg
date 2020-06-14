@@ -1,0 +1,27 @@
+{
+  "name": "ppjg",
+  "version": "1.0.0",
+  "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martingreilinger/ppjg.git"
+  },
+  "author": {
+    "name": "Martin Greilinger",
+    "email": "25162092+martingreilinger@users.noreply.github.com",
+    "url": "https://github.com/martingreilinger"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martingreilinger/ppjg/issues"
+  },
+  "homepage": "https://github.com/martingreilinger/ppjg#readme"
+}
