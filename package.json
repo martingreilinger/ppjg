@@ -1,6 +1,6 @@
 {
   "name": "ppjg",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
   "scripts": {
     "test": "jest",
@@ -10,7 +10,8 @@
     "lint:fix": "eslint . --fix",
     "tsc": "tsc",
     "verify": "npm run lint && npm run test",
-    "build": "./prepare.sh && npm run verify && npm run tsc && npm run ppjg"
+    "build": "./prepare.sh && npm run verify && npm run tsc && npm run ppjg",
+    "publish": "./publish.sh"
   },
   "husky": {
     "hooks": {
@@ -31,6 +32,12 @@
     "url": "https://github.com/martingreilinger/ppjg/issues"
   },
   "homepage": "https://github.com/martingreilinger/ppjg#readme",
+  "keywords": [
+    "build",
+    "tool",
+    "package.json",
+    "publish"
+  ],
   "devDependencies": {
     "@types/jest": "^26.0.3",
     "@types/node": "^14.0.14",

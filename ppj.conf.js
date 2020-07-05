@@ -2,11 +2,13 @@ module.exports = {
   persist: [
     'author',
     'description',
+    'keywords',
+    'license',
     'name',
     'repository',
-    'version',
+    'version'
   ],
   alter: {
-    'main': 'index.js',
-  },
+    main: 'index.js'
+  }
 };
