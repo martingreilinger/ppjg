@@ -4,14 +4,14 @@
   "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
   "scripts": {
     "test": "jest",
-    "ppjg": "node ./out/index.js",
+    "ppjg": "node ./out/cli.js",
     "eslint": "eslint",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "tsc": "tsc",
     "verify": "npm run lint && npm run test",
     "build": "./prepare.sh && npm run verify && npm run tsc && npm run ppjg",
-    "publish": "./publish.sh"
+    "publish": "npm run publish"
   },
   "husky": {
     "hooks": {
