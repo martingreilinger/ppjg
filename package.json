@@ -1,19 +1,20 @@
 {
   "name": "ppjg",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "ppjg": "node ./out/index.js",
     "eslint": "eslint",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "tsc": "tsc",
-    "build": "npm run lint:fix && npm run tsc && npm run ppjg"
+    "verify": "npm run lint && npm run test",
+    "build": "npm run verify && npm run tsc && npm run ppjg"
   },
   "husky": {
     "hooks": {
-     "pre-commit": "npm run lint:fix"
+      "pre-commit": "npm run lint:fix"
     }
   },
   "repository": {
@@ -31,6 +32,7 @@
   },
   "homepage": "https://github.com/martingreilinger/ppjg#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.3",
     "@types/node": "^14.0.14",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",

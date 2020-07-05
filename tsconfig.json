@@ -8,5 +8,6 @@
     "strict": true,
     "outDir": "out"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"],
 }
