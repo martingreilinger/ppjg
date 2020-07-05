@@ -1,6 +1,6 @@
 {
   "name": "ppjg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
   "scripts": {
     "test": "jest",
@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --fix",
     "tsc": "tsc",
     "verify": "npm run lint && npm run test",
-    "build": "rm -rf out && npm run verify && npm run tsc && npm run ppjg"
+    "build": "./prepare.sh && npm run verify && npm run tsc && npm run ppjg"
   },
   "husky": {
     "hooks": {
