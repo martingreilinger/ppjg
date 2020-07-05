@@ -10,6 +10,8 @@ export function filterNonPersistentKeys(
   return key => keysToPersist.indexOf(key) > -1;
 }
 
-export function cloneValuesToPersist(): (pj: PackageJsonModel, key: string) => PackageJsonModel {
-  return (pj, key) => Object.assign(pj, { [key]: pj[key] });
+export function cloneValuesToPersist(
+  src: PackageJsonModel
+): (pj: PackageJsonModel, key: string) => PackageJsonModel {
+  return (pj, key) => Object.assign(pj, { [key]: src[key] });
 }

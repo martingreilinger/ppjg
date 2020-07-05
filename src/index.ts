@@ -5,11 +5,11 @@ import { filterNonPersistentKeys, getKeys, cloneValuesToPersist } from './ppjg';
 
 (async () => {
   const config = await readFile<PPJGConfModel>('ppj.conf.js');
-  const cpj = await readFile<PackageJsonModel>('package.json');
+  const sourcePackageJson = await readFile<PackageJsonModel>('package.json');
 
-  const persistedValues = getKeys(cpj)
+  const persistedValues = getKeys(sourcePackageJson)
     .filter(filterNonPersistentKeys(config.persist))
-    .reduce(cloneValuesToPersist(), {});
+    .reduce(cloneValuesToPersist(sourcePackageJson), {});
 
   return writePackageJson(Object.assign(persistedValues, config.alter));
-})().then(() => console.log('completed'));
+})().then(() => console.log('generated a package.json for publishing'));
