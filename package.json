@@ -1,6 +1,6 @@
 {
   "name": "ppjg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
   "scripts": {
     "test": "jest",
