@@ -23,5 +23,5 @@ module.exports = {
 
 4. Run **PPJG** by executing the `generatePublishPackageJson` function or by executing the binary via Node:
 ```bash
-npx ppjg
+VERSION='V1' npx ppjg
 ```
