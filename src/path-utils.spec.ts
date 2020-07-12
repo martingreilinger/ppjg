@@ -1,20 +1,22 @@
-import { getOutDirPath } from './path-utils';
+import { buildPublishPackageJsonPath, buildFilePath } from './path-utils';
+import { WorkingDirResolver } from './working-dir-resolver';
 
-function outDirRegex(outDir = 'out'): RegExp {
-  return new RegExp(`.*/${outDir}/package.json`);
-}
+const workingDirResolverStub: WorkingDirResolver = () => '';
 
 describe('PathUtils', () => {
-  test('provides out dir path for the generated package json', () => {
-    const outPath = getOutDirPath();
+  test('builds a file path without sub folder', () => {
+    const file = 'target.yaml';
 
-    expect(outPath).toMatch(outDirRegex());
+    const outPath = buildFilePath(file)(workingDirResolverStub);
+
+    expect(outPath).toMatch(`/${file}`);
   });
 
-  test('provides out dir path with custom directory', () => {
-    const outDir = 'target';
-    const outPath = getOutDirPath(outDir);
+  test('build file path for pubish package.json', () => {
+    const dir = 'target';
 
-    expect(outPath).toMatch(outDirRegex(outDir));
+    const outPath = buildPublishPackageJsonPath(dir)(workingDirResolverStub);
+
+    expect(outPath).toBe(`/${dir}/package.json`);
   });
 });

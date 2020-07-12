@@ -2,8 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/ppjg.svg)](https://badge.fury.io/js/ppjg) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-Generate a dedicated `package.json` for publishing.
-The goal of this project is to reduce the content overhead seen in published `package.json` files.
+Generate a dedicated `package.json` for publishing without development bloat.
 
 How can the _generate file_ be _altered_?
 

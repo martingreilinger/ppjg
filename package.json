@@ -1,7 +1,7 @@
 {
   "name": "ppjg",
   "version": "0.0.4",
-  "description": "Small package.json generator, used to generate a dedicated package.json for publishing your npm package",
+  "description": "Small `package.json` generator for publishing by omitting development bloat",
   "scripts": {
     "test": "jest",
     "ppjg": "node ./out/cli.js",
