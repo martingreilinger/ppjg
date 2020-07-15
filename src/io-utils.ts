@@ -4,11 +4,11 @@ import { mkdirAsync } from './async-fs';
 import { buildFilePath, buildPublishPackageJsonPath } from './path-utils';
 import { DEFAULT_OUT_DIR } from './defaults';
 
-export function readFile<T>(filename: string): (ioAdapter: IOAdaper) => T {
+export function readFile<T>(filename: string): (ioAdapter: IOAdaper) => Promise<T> {
   return ioAdapter => {
     const filePath = buildFilePath(filename)(ioAdapter.cwd);
 
-    return ioAdapter.require(filePath);
+    return ioAdapter.importESM(filePath);
   };
 }
 
