@@ -14,7 +14,7 @@ How can the _generate file_ be _altered_?
 
 - Install the **ppjg** as a development dependency:
 ```bash
-node i -D ppjgm
+node i -D ppjg
 ```
 
 - Create a new `ppjg.conf.js` in your project root directory.
@@ -39,8 +39,6 @@ VERSION='V1' npx ppjg
 _[WIP]_
 
 ## Usage
-
-Note: Currently an `out` directory is **required**!
 
 ### Binary
 
