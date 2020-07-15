@@ -1,6 +1,6 @@
 {
   "name": "ppjg",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Small `package.json` generator for publishing by omitting development bloat",
   "scripts": {
     "test": "jest",
