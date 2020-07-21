@@ -6,6 +6,8 @@ import { DEFAULT_CONFIG_NAME } from './defaults';
 import { IOAdaper } from './io-adapter';
 import { cwd } from 'process';
 import { mkdir, writeFileSync } from 'fs';
+import { Logger } from './logger/logger';
+import { logSuccess, logError } from './logger/log-messages';
 
 const ioAdapter: IOAdaper = {
   cwd,
@@ -13,6 +15,8 @@ const ioAdapter: IOAdaper = {
   writeFileSync,
   importESM: (moduleName: string) => import(moduleName)
 };
+
+const logger: Logger = console;
 
 export async function generatePublishPackageJson(
   configFileName: string = DEFAULT_CONFIG_NAME
@@ -23,13 +27,8 @@ export async function generatePublishPackageJson(
   ])
     .then(preparePublishPackageJson)
     .then(publishPackageJson => writePackageJson(publishPackageJson)(ioAdapter))
-    .then(() =>
-      console.log(
-        '\x1b[1m%s\x1b[0m \x1b[32m%s\x1b[32m',
-        '[PPJG]',
-        'Successfully generated a package.json for publishing!'
-      )
-    );
+    .then(() => logSuccess()(logger))
+    .catch(error => logError(error)(logger));
 }
 
 export default generatePublishPackageJson;

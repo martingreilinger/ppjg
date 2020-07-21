@@ -4,7 +4,11 @@ import { mkdirAsync } from './async-fs';
 import { buildFilePath, buildPublishPackageJsonPath } from './path-utils';
 import { DEFAULT_OUT_DIR } from './defaults';
 
-export function readFile<T>(filename: string): (ioAdapter: IOAdaper) => Promise<T> {
+const FOLDER_ALREAD_EXISTS_ERROR_NUMBER = -17;
+
+export function readFile<T>(
+  filename: string
+): (ioAdapter: IOAdaper) => Promise<T> {
   return ioAdapter => {
     const filePath = buildFilePath(filename)(ioAdapter.cwd);
 
@@ -31,8 +35,7 @@ function ensureDirExists(dirName: string): (mkdir: Mkdir) => Promise<void> {
 }
 
 function ignoreErrorIfFolderExists(error: NodeJS.ErrnoException): void {
-  console.log('error', error);
-  if (error.errno !== -17) {
+  if (error.errno !== FOLDER_ALREAD_EXISTS_ERROR_NUMBER) {
     throw error;
   }
 }
