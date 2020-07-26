@@ -44,8 +44,8 @@ To provide a differently named configuration, see the [Generator Configuration](
 
 The publish configuration has two main properties:
 
-- persist - an array of property names which will be kept inside the publish configuration
-- alter - an object of new or altered properties and their values
+- `persist` - an array of property names which will be kept inside the publish configuration
+- `alter` - an object of new or altered properties and their values
 
 ### The Generator Configuration
 
