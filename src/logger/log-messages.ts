@@ -6,10 +6,13 @@ const logPrefix = '[PPJG]';
 const successMessage = 'Successfully generated a package.json for publishing!';
 
 export const logSuccess = () => (logger: Logger): void =>
-  logger.log(`${successPrefix(logPrefix)} ${successMessage}`);
+  log(successPrefix(logPrefix), successMessage)(logger);
 
 export const logError = (error: Error) => (logger: Logger): void => {
   const errorDescription = `${error.name}: \n ${error.message}`;
 
-  logger.log(`${errorPrefix(logPrefix)} ${errorMessage(errorDescription)}`);
+  log(errorPrefix(logPrefix), errorMessage(errorDescription))(logger);
 };
+
+const log = (prefix: string, message: string) => (logger: Logger): void =>
+  logger.log(`${prefix} ${message}`);

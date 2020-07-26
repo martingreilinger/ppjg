@@ -1,13 +1,13 @@
-import { readFile, writePackageJson } from './io-utils';
+import { cwd } from 'process';
+import { DEFAULT_CONFIG_NAME } from './defaults';
+import { IOAdaper } from './io-adapter';
+import { Logger } from './logger/logger';
+import { logSuccess, logError } from './logger/log-messages';
+import { mkdir, writeFileSync } from 'fs';
 import { PackageJsonModel } from './package-json.model';
 import { PPJGConfModel } from './ppjg-conf.model';
 import { preparePublishPackageJson } from './ppjg';
-import { DEFAULT_CONFIG_NAME } from './defaults';
-import { IOAdaper } from './io-adapter';
-import { cwd } from 'process';
-import { mkdir, writeFileSync } from 'fs';
-import { Logger } from './logger/logger';
-import { logSuccess, logError } from './logger/log-messages';
+import { readFile, writePackageJson } from './io-utils';
 
 const ioAdapter: IOAdaper = {
   cwd,
