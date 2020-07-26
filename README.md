@@ -17,7 +17,7 @@ How can the _generate file_ be _altered_?
 node i -D ppjg
 ```
 
-- Create a new `ppjg.conf.js` in your project root directory.
+- Create a new publish config called `ppj.conf.js` in your project root directory.
 
 - Define which `package.json` keys to persist and which to override:
 ```JavaScript
@@ -36,7 +36,32 @@ VERSION='V1' npx ppjg
 
 ## Configuration
 
-_[WIP]_
+### The Publish Configuration
+
+The publish configuration defines which properties of the projects `package.json` are kept and which will be overwritten.  
+By default the publish configuration is defined inside the `ppj.conf.js`.  
+To provide a differently named configuration, see the [Generator Configuration](#the-generator-configuration) section.
+
+The publish configuration has two main properties:
+
+- persist - an array of property names which will be kept inside the publish configuration
+- alter - an object of new or altered properties and their values
+
+### The Generator Configuration
+
+#### CLI
+
+Configuration via CLI parameter: _[WIP]_
+
+#### Programmatically
+
+When invoking `generatePublishPackageJson` a generator config (`GeneratorConfigModel`) can be supplied.
+This config allows the configuration of various properties:
+
+- `publishConfigFileName` - custom config file name (default `ppj.conf.js`)
+- `outDir` - custom out directory (default `/out`)
+- `logger` - custom logger (default `console` logger)
+- `ioAdapter` - custom IO functions for file system access (default _nodejs fs_ utils)
 
 ## Usage
 
@@ -45,11 +70,15 @@ _[WIP]_
 The provided binary offers easy invocation via the _CLI_ or _NPM script_.
 
 **CLI**
+
+Directly execute the binary with `npx`:
 ```bash
 npx ppjg
 ```
 
 **NPM script**
+
+Create a new script entry invoking the binary:
 ```json
 {
   "scripts": {
@@ -57,6 +86,8 @@ npx ppjg
   }
 }
 ```
+
+Run the script:
 ```bash
 npm run generatePPJ
 ```
@@ -65,18 +96,9 @@ npm run generatePPJ
 
 It is also possible to invoke the generator function directly.
 
-**Pre ES6**
-```JavaScript
-const ppjg = require('ppjg');
-
-ppjg.generatePublishPackageJson();
-
-```
-
-**Using ES6 modules**
 ```JavaScript
 // import the function directly
-import {generatePublishPackageJson} from 'ppjg';
+import { generatePublishPackageJson } from 'ppjg';
 
 generatePublishPackageJson();
 

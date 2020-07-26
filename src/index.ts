@@ -1,34 +1,21 @@
-import { cwd } from 'process';
-import { DEFAULT_CONFIG_NAME } from './defaults';
-import { IOAdaper } from './io-adapter';
-import { Logger } from './logger/logger';
+import { DEFAULT_GENERATOR_CONFIG } from './defaults';
 import { logSuccess, logError } from './logger/log-messages';
-import { mkdir, writeFileSync } from 'fs';
-import { PackageJsonModel } from './package-json.model';
-import { PPJGConfModel } from './ppjg-conf.model';
 import { preparePublishPackageJson } from './ppjg';
-import { readFile, writePackageJson } from './io-utils';
-
-const ioAdapter: IOAdaper = {
-  cwd,
-  mkdir,
-  writeFileSync,
-  importESM: (moduleName: string) => import(moduleName)
-};
-
-const logger: Logger = console;
+import {
+  writePackageJson,
+  readPackageJson,
+  readPublishConfig
+} from './io-utils';
+import { GeneratorConfigModel } from './generator-config.model';
 
 export async function generatePublishPackageJson(
-  configFileName: string = DEFAULT_CONFIG_NAME
+  config: GeneratorConfigModel = DEFAULT_GENERATOR_CONFIG
 ): Promise<void> {
-  return Promise.all([
-    readFile<PackageJsonModel>('package.json')(ioAdapter),
-    readFile<PPJGConfModel>(configFileName)(ioAdapter)
-  ])
+  return Promise.all([readPackageJson(config), readPublishConfig(config)])
     .then(preparePublishPackageJson)
-    .then(publishPackageJson => writePackageJson(publishPackageJson)(ioAdapter))
-    .then(() => logSuccess()(logger))
-    .catch(error => logError(error)(logger));
+    .then(writePackageJson(config))
+    .then(logSuccess(config.logger))
+    .catch(logError(config.logger));
 }
 
 export default generatePublishPackageJson;

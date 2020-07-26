@@ -1,9 +1,9 @@
 import { PackageJsonModel } from './package-json.model';
-import { PPJGConfModel } from './ppjg-conf.model';
+import { PublishConfigModel } from './publish-config.model';
 
 export function preparePublishPackageJson([sourcePackageJson, config]: [
   PackageJsonModel,
-  PPJGConfModel
+  PublishConfigModel
 ]): PackageJsonModel {
   const persistedValues = getKeys(sourcePackageJson)
     .filter(filterNonPersistentKeys(config.persist || []))

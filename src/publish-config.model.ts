@@ -1,6 +1,6 @@
 import { PackageJsonModel } from './package-json.model';
 
-export interface PPJGConfModel {
+export interface PublishConfigModel {
   persist?: Array<string>;
   alter?: PackageJsonModel;
 }

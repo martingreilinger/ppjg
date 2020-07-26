@@ -15,7 +15,7 @@ describe('log messages', () => {
   it('logs success message formatted correctly', () => {
     const message = 'Successfully generated a package.json for publishing!';
 
-    logSuccess()(logger);
+    logSuccess(logger)();
 
     expect(logger.log).toHaveBeenCalledWith(expect.stringContaining('[PPJG]'));
     expect(logger.log).toHaveBeenCalledWith(expect.stringContaining(message));
@@ -25,7 +25,7 @@ describe('log messages', () => {
     const message = 'this caused issues';
     const error = new TestError(message);
 
-    logError(error)(logger);
+    logError(logger)(error);
 
     expect(logger.log).toHaveBeenCalledWith(expect.stringContaining('[PPJG]'));
     expect(logger.log).toHaveBeenCalledWith(expect.stringContaining(message));

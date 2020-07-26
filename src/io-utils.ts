@@ -1,45 +1,47 @@
-import { IOAdaper } from './io-adapter';
-import { Mkdir } from './node-fs';
-import { mkdirAsync } from './async-fs';
 import { buildFilePath, buildPublishPackageJsonPath } from './path-utils';
-import { DEFAULT_OUT_DIR } from './defaults';
+import { GeneratorConfigModel } from './generator-config.model';
+import { IOAdaper } from './io-adapter';
+import { mkdirAsync } from './async-fs';
+import { PackageJsonModel } from './package-json.model';
 
 const FOLDER_ALREAD_EXISTS_ERROR_NUMBER = -17;
+const PACKAGE_JSON_FILE_NAME = 'package.json';
 
-export function readFile<T>(
-  filename: string
-): (ioAdapter: IOAdaper) => Promise<T> {
-  return ioAdapter => {
-    const filePath = buildFilePath(filename)(ioAdapter.cwd);
+export const readPackageJson = (
+  config: GeneratorConfigModel
+): Promise<PackageJsonModel> =>
+  readFile<PackageJsonModel>(config.ioAdapter, PACKAGE_JSON_FILE_NAME);
 
-    return ioAdapter.importESM(filePath);
-  };
-}
+export const readPublishConfig = (
+  config: GeneratorConfigModel
+): Promise<PackageJsonModel> =>
+  readFile<PackageJsonModel>(config.ioAdapter, config.publishConfigFileName);
 
-export function writePackageJson(
-  data: unknown,
-  outDir = DEFAULT_OUT_DIR
-): (ioAdapter: IOAdaper) => Promise<void> {
-  return ioAdapter =>
-    ensureDirExists(outDir)(ioAdapter.mkdir).then(() =>
-      ioAdapter.writeFileSync(
-        buildPublishPackageJsonPath(outDir)(ioAdapter.cwd),
-        stringifyPackageJson(data),
-        { flag: 'w' }
-      )
-    );
-}
+const readFile = <T>(ioAdapter: IOAdaper, filename: string): Promise<T> =>
+  ioAdapter.importESM<T>(buildFilePath(filename)(ioAdapter.cwd));
 
-function ensureDirExists(dirName: string): (mkdir: Mkdir) => Promise<void> {
-  return mkdir => mkdirAsync(dirName)(mkdir).catch(ignoreErrorIfFolderExists);
-}
+export const writePackageJson = (config: GeneratorConfigModel) => (
+  data: unknown
+): Promise<void> =>
+  ensureDirExists(config).then(() =>
+    config.ioAdapter.writeFileSync(
+      buildPublishPackageJsonPath(config.outDir)(config.ioAdapter.cwd),
+      stringifyPackageJson(data),
+      { flag: 'w' }
+    )
+  );
 
-function ignoreErrorIfFolderExists(error: NodeJS.ErrnoException): void {
-  if (error.errno !== FOLDER_ALREAD_EXISTS_ERROR_NUMBER) {
-    throw error;
-  }
-}
+const ensureDirExists = (config: GeneratorConfigModel): Promise<void> =>
+  mkdirAsync(config.outDir)(config.ioAdapter.mkdir).catch(
+    ignoreErrorIfFolderExists
+  );
 
-function stringifyPackageJson(data: unknown): string {
-  return JSON.stringify(data, null, 2);
-}
+const ignoreErrorIfFolderExists = (
+  error: NodeJS.ErrnoException
+): Promise<void> =>
+  error.errno !== FOLDER_ALREAD_EXISTS_ERROR_NUMBER
+    ? Promise.reject(error)
+    : Promise.resolve();
+
+const stringifyPackageJson = (data: unknown): string =>
+  JSON.stringify(data, null, 2);
