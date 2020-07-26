@@ -2,7 +2,6 @@ module.exports = {
   persist: [
     'author',
     'description',
-    'devDependencies',
     'keywords',
     'license',
     'name',
