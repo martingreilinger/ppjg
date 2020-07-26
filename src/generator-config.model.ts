@@ -1,4 +1,4 @@
-import { IOAdaper } from './io-adapter';
+import { IOAdaper } from './io/io-adapter';
 import { Logger } from './logger/logger';
 
 export interface GeneratorConfigModel {

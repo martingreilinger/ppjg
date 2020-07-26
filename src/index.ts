@@ -5,7 +5,7 @@ import {
   writePackageJson,
   readPackageJson,
   readPublishConfig
-} from './io-utils';
+} from './io/io-utils';
 import { GeneratorConfigModel } from './generator-config.model';
 
 export async function generatePublishPackageJson(

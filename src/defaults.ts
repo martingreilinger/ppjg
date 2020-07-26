@@ -2,7 +2,7 @@ import { cwd } from 'process';
 import { mkdir, writeFileSync } from 'fs';
 
 import { GeneratorConfigModel } from './generator-config.model';
-import { IOAdaper } from './io-adapter';
+import { IOAdaper } from './io/io-adapter';
 import { Logger } from './logger/logger';
 
 export const DEFAULT_PUBLISH_CONFIG_FILE_NAME = 'ppj.conf.js';

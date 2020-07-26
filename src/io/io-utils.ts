@@ -1,8 +1,8 @@
 import { buildFilePath, buildPublishPackageJsonPath } from './path-utils';
-import { GeneratorConfigModel } from './generator-config.model';
+import { GeneratorConfigModel } from '../generator-config.model';
 import { IOAdaper } from './io-adapter';
 import { mkdirAsync } from './async-fs';
-import { PackageJsonModel } from './package-json.model';
+import { PackageJsonModel } from '../package-json.model';
 
 const FOLDER_ALREAD_EXISTS_ERROR_NUMBER = -17;
 const PACKAGE_JSON_FILE_NAME = 'package.json';
