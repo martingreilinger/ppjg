@@ -97,12 +97,7 @@ npm run generatePPJ
 It is also possible to invoke the generator function directly.
 
 ```JavaScript
-// import the function directly
 import { generatePublishPackageJson } from 'ppjg';
 
-generatePublishPackageJson();
-
-// using the default export
-import generatePublishPackageJson from 'ppjg';
 generatePublishPackageJson();
 ```

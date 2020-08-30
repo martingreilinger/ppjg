@@ -17,5 +17,3 @@ export async function generatePublishPackageJson(
     .then(logSuccess(config.logger))
     .catch(logError(config.logger));
 }
-
-export default generatePublishPackageJson;

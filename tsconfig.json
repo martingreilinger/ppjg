@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    "sourceMap": true,
     "esModuleInterop": true,
     "lib": ["esnext"],
     "module": "commonjs",
@@ -9,5 +9,5 @@
     "outDir": "out"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"]
+  "exclude": ["src/**/*.spec.ts", "src/**/*.mock.ts"]
 }

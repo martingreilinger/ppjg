@@ -4,6 +4,7 @@ import { mkdir, writeFileSync } from 'fs';
 import { GeneratorConfigModel } from './generator-config.model';
 import { IOAdaper } from './io/io-adapter';
 import { Logger } from './logger/logger';
+import { esImport } from './io/es-import';
 
 export const DEFAULT_PUBLISH_CONFIG_FILE_NAME = 'ppj.conf.js';
 export const DEFAULT_OUT_DIR = 'out';
@@ -11,7 +12,7 @@ export const DEFAULT_IO_ADAPTER: IOAdaper = {
   cwd,
   mkdir,
   writeFileSync,
-  importESM: (moduleName: string) => import(moduleName)
+  esImport
 };
 export const DEFAULT_LOGGER: Logger = console;
 

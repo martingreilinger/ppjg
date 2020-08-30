@@ -18,7 +18,7 @@ export const readPublishConfig = (
   readFile<PackageJsonModel>(config.ioAdapter, config.publishConfigFileName);
 
 const readFile = <T>(ioAdapter: IOAdaper, filename: string): Promise<T> =>
-  ioAdapter.importESM<T>(buildFilePath(filename)(ioAdapter.cwd));
+  ioAdapter.esImport<T>(buildFilePath(filename)(ioAdapter.cwd));
 
 export const writePackageJson = (config: GeneratorConfigModel) => (
   data: unknown

@@ -5,5 +5,5 @@ export interface IOAdaper {
   cwd: WorkingDirResolver;
   mkdir: Mkdir;
   writeFileSync: WriteFileSync;
-  importESM<T>(moduleName: string): Promise<T>;
+  esImport<T>(moduleName: string): Promise<T>;
 }

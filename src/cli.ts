@@ -1,4 +1,3 @@
-#!/usr/bin/env node
-import generatePublishPackageJson from './index';
+import {generatePublishPackageJson} from './index';
 
 generatePublishPackageJson();

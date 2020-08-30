@@ -9,6 +9,7 @@ module.exports = {
     'version'
   ],
   alter: {
-    bin: './cli.js'
+    bin: './cli.js',
+    main: './index.js'
   }
 };
