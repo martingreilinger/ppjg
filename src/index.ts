@@ -1,3 +1,9 @@
+import {
+  DEFAULT_OUT_DIR,
+  DEFAULT_PUBLISH_CONFIG_FILE_NAME,
+  DEFAULT_IO_ADAPTER,
+  DEFAULT_LOGGER,
+} from './defaults';
 import { logSuccess, logError } from './logger/log-messages';
 import { preparePublishPackageJson } from './ppjg';
 import {
@@ -6,14 +12,23 @@ import {
   readPublishConfig,
 } from './io/io-utils';
 import { GeneratorConfigModel } from './generator-config.model';
-import { DEFAULT_GENERATOR_CONFIG } from './defaults';
 
 export async function generatePublishPackageJson(
-  config: GeneratorConfigModel = DEFAULT_GENERATOR_CONFIG,
+  config?: Partial<GeneratorConfigModel>,
 ): Promise<void> {
-  return Promise.all([readPackageJson(config), readPublishConfig(config)])
+  const mergedConfig: GeneratorConfigModel = {
+    publishConfigFileName: config?.publishConfigFileName || DEFAULT_PUBLISH_CONFIG_FILE_NAME,
+    outDir: config?.outDir || DEFAULT_OUT_DIR,
+    ioAdapter: config?.ioAdapter || DEFAULT_IO_ADAPTER,
+    logger: config?.logger || DEFAULT_LOGGER,
+  };
+
+  return Promise.all([
+    readPackageJson(mergedConfig),
+    readPublishConfig(mergedConfig),
+  ])
     .then(preparePublishPackageJson)
-    .then(writePackageJson(config))
-    .then(logSuccess(config.logger))
-    .catch(logError(config.logger));
+    .then(writePackageJson(mergedConfig))
+    .then(logSuccess(mergedConfig.logger))
+    .catch(logError(mergedConfig.logger));
 }

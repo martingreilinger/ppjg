@@ -14,7 +14,7 @@
     "test": "jest",
     "tsc": "tsc",
     "verify:lint": "eslint .",
-    "verify:test": "test",
+    "verify:test": "npm t",
     "verify": "npm run verify:lint && npm run verify:test"
   },
   "private": true,
