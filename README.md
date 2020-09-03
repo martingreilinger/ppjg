@@ -17,7 +17,7 @@ How can the _generate file_ be _altered_?
 node i -D ppjg
 ```
 
-- Create a new publish config called `ppj.conf.js` in your project root directory.
+- Create a new publish config called `ppj.config.js` in your project root directory.
 
 - Define which `package.json` keys to persist and which to override:
 ```JavaScript
@@ -39,7 +39,7 @@ VERSION='V1' npx ppjg
 ### The Publish Configuration
 
 The publish configuration defines which properties of the projects `package.json` are kept and which will be overwritten.  
-By default the publish configuration is defined inside the `ppj.conf.js`.  
+By default the publish configuration is defined inside the `ppj.config.js`.  
 To provide a differently named configuration, see the [Generator Configuration](#the-generator-configuration) section.
 
 The publish configuration has two main properties:
@@ -58,7 +58,7 @@ Configuration via CLI parameter: _[WIP]_
 When invoking `generatePublishPackageJson` a generator config (`GeneratorConfigModel`) can be supplied.
 This config allows the configuration of various properties:
 
-- `publishConfigFileName` - custom config file name (default `ppj.conf.js`)
+- `publishConfigFileName` - custom config file name (default `ppj.config.js`)
 - `outDir` - custom out directory (default `/out`)
 - `logger` - custom logger (default `console` logger)
 - `ioAdapter` - custom IO functions for file system access (default _nodejs fs_ utils)
