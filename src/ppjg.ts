@@ -17,13 +17,13 @@ function getKeys(object: PackageJsonModel): ReadonlyArray<string> {
 }
 
 function filterNonPersistentKeys(
-  keysToPersist: ReadonlyArray<string>
+  keysToPersist: ReadonlyArray<string>,
 ): (key: string) => boolean {
   return key => keysToPersist.indexOf(key) > -1;
 }
 
 function cloneValuesToPersist(
-  src: PackageJsonModel
+  src: PackageJsonModel,
 ): (pj: PackageJsonModel, key: string) => PackageJsonModel {
   return (pj, key) => Object.assign(pj, { [key]: src[key] });
 }

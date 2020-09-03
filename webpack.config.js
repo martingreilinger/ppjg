@@ -8,7 +8,7 @@ module.exports = {
   target: 'node',
   entry: {
     cli: './src/cli.ts',
-    index: './src/index.ts'
+    index: './src/index.ts',
   },
   devtool: 'inline-source-map',
   optimization: {
@@ -18,30 +18,30 @@ module.exports = {
           name: 'core',
           chunks: 'all',
           test: /[\\/]src[\\/](.*)/,
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
         use: [{ loader: 'ts-loader' }],
-        exclude: /(node_modules|.*mock.*)/
-      }
+        exclude: /(node_modules|.*mock.*)/,
+      },
     ],
-    noParse: /\/es-import.ts$/
+    noParse: /\/es-import.ts$/,
   },
   resolve: {
-    extensions: ['.ts']
+    extensions: ['.ts'],
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'out'),
     chunkFilename: '[name].chunk.js',
     library: 'ppjg',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -49,7 +49,7 @@ module.exports = {
     new webpack.BannerPlugin({
       banner: '#!/usr/bin/env node',
       raw: true,
-      test: 'cli.js'
-    })
-  ]
+      test: 'cli.js',
+    }),
+  ],
 };

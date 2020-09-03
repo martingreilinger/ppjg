@@ -30,7 +30,7 @@ describe('log messages', () => {
     expect(logger.log).toHaveBeenCalledWith(expect.stringContaining('[PPJG]'));
     expect(logger.log).toHaveBeenCalledWith(expect.stringContaining(message));
     expect(logger.log).toHaveBeenCalledWith(
-      expect.stringContaining('TestError')
+      expect.stringContaining('TestError'),
     );
   });
 });

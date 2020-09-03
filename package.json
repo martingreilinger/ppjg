@@ -4,17 +4,18 @@
   "description": "Small `package.json` generator for publishing by omitting development bloat",
   "scripts": {
     "build": "npm run verify && npm run bundle && npm run ppjg",
-    "bundle": "npm run bundle:sources && npm run bundle:declarations",
-    "bundle:sources": "webpack",
     "bundle:declarations": "tsc --p tsconfig.declaration.json",
-    "verify": "npm run verify:lint && npm run verify:test",
-    "verify:lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "verify:test": "jest",
+    "bundle:sources": "webpack",
+    "bundle": "npm run bundle:sources && npm run bundle:declarations",
     "eslint": "eslint",
+    "lint:fix": "eslint . --fix",
     "ppjg": "node ./out/cli.js",
     "publish": "npm publish ./out",
-    "tsc": "tsc"
+    "test": "jest",
+    "tsc": "tsc",
+    "verify:lint": "eslint .",
+    "verify:test": "test",
+    "verify": "npm run verify:lint && npm run verify:test"
   },
   "private": true,
   "husky": {

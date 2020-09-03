@@ -11,7 +11,7 @@ describe('async fs', () => {
         expect(mkdirSpy).toHaveBeenCalledWith(
           directoryName,
           { recursive: true },
-          expect.any(Function)
+          expect.any(Function),
         );
         done();
       }, done.fail);
@@ -27,11 +27,11 @@ describe('async fs', () => {
           expect(mkdirSpy).toHaveBeenCalledWith(
             directoryName,
             { recursive: true },
-            expect.any(Function)
+            expect.any(Function),
           );
           expect(error).toBe(expectedError);
           done();
-        }
+        },
       );
     });
   });

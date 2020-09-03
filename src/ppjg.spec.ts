@@ -3,7 +3,7 @@ import { preparePublishPackageJson } from './ppjg';
 describe('ppjg', () => {
   const packageJson = {
     name: 'test',
-    version: '2.0.0'
+    version: '2.0.0',
   };
 
   test('will generate an empty package.json if no ppjg config options are provided', () => {
@@ -11,7 +11,7 @@ describe('ppjg', () => {
 
     const publishPackageJson = preparePublishPackageJson([
       packageJson,
-      ppjConfig
+      ppjConfig,
     ]);
 
     expect(publishPackageJson).toStrictEqual({});
@@ -19,12 +19,12 @@ describe('ppjg', () => {
 
   test('will persist configured properties', () => {
     const ppjConfig = {
-      persist: ['name']
+      persist: ['name'],
     };
 
     const publishPackageJson = preparePublishPackageJson([
       packageJson,
-      ppjConfig
+      ppjConfig,
     ]);
 
     expect(publishPackageJson).toStrictEqual({ name: 'test' });
@@ -33,13 +33,13 @@ describe('ppjg', () => {
   test('will alter configured properties', () => {
     const ppjConfig = {
       alter: {
-        version: '3.0.1-beta'
-      }
+        version: '3.0.1-beta',
+      },
     };
 
     const publishPackageJson = preparePublishPackageJson([
       packageJson,
-      ppjConfig
+      ppjConfig,
     ]);
 
     expect(publishPackageJson).toStrictEqual({ version: '3.0.1-beta' });
@@ -52,9 +52,9 @@ describe('ppjg', () => {
         description: 'a test package',
         author: {
           name: 'author',
-          email: 'mail@com'
-        }
-      }
+          email: 'mail@com',
+        },
+      },
     };
     const expectedPublishConfig = {
       name: 'test',
@@ -62,13 +62,13 @@ describe('ppjg', () => {
       description: 'a test package',
       author: {
         name: 'author',
-        email: 'mail@com'
-      }
+        email: 'mail@com',
+      },
     };
 
     const publishPackageJson = preparePublishPackageJson([
       packageJson,
-      ppjConfig
+      ppjConfig,
     ]);
 
     expect(publishPackageJson).toStrictEqual(expectedPublishConfig);

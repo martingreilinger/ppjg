@@ -12,7 +12,7 @@ export const DEFAULT_IO_ADAPTER: IOAdaper = {
   cwd,
   mkdir,
   writeFileSync,
-  esImport
+  esImport,
 };
 export const DEFAULT_LOGGER: Logger = console;
 
@@ -20,5 +20,5 @@ export const DEFAULT_GENERATOR_CONFIG: GeneratorConfigModel = {
   publishConfigFileName: DEFAULT_PUBLISH_CONFIG_FILE_NAME,
   outDir: DEFAULT_OUT_DIR,
   logger: DEFAULT_LOGGER,
-  ioAdapter: DEFAULT_IO_ADAPTER
+  ioAdapter: DEFAULT_IO_ADAPTER,
 };

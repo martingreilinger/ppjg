@@ -6,10 +6,10 @@ module.exports = {
     'license',
     'name',
     'repository',
-    'version'
+    'version',
   ],
   alter: {
     bin: './cli.js',
-    main: './index.js'
-  }
+    main: './index.js',
+  },
 };
