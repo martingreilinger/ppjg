@@ -1,47 +1,32 @@
+import { promises } from 'fs';
+import { esImport } from './es-import';
+import { ensureDirExists } from './directory-utils';
 import { buildFilePath, buildPublishPackageJsonPath } from './path-utils';
-import { GeneratorConfigModel } from '../generator-config.model';
-import { IOAdaper } from './io-adapter';
-import { mkdirAsync } from './async-fs';
 import { PackageJsonModel } from '../package-json.model';
+import { PublishConfigModel } from '../publish-config.model';
 
-const FOLDER_ALREAD_EXISTS_ERROR_NUMBER = -17;
 const PACKAGE_JSON_FILE_NAME = 'package.json';
 
-export const readPackageJson = (
-  config: GeneratorConfigModel,
-): Promise<PackageJsonModel> =>
-  readFile<PackageJsonModel>(config.ioAdapter, PACKAGE_JSON_FILE_NAME);
+export const readPackageJson = (): Promise<PackageJsonModel> =>
+  readFile<PackageJsonModel>(PACKAGE_JSON_FILE_NAME);
 
 export const readPublishConfig = (
-  config: GeneratorConfigModel,
-): Promise<PackageJsonModel> =>
-  readFile<PackageJsonModel>(config.ioAdapter, config.publishConfigFileName);
+  publishConfigFileName: string,
+): Promise<PublishConfigModel> =>
+  readFile<PublishConfigModel>(publishConfigFileName);
 
-const readFile = <T>(ioAdapter: IOAdaper, filename: string): Promise<T> =>
-  ioAdapter.esImport<T>(buildFilePath(filename)(ioAdapter.cwd));
+const readFile = <T>(filename: string): Promise<T> =>
+  esImport<T>(buildFilePath(filename));
 
-export const writePackageJson = (config: GeneratorConfigModel) => (
-  data: unknown,
+export const writePackageJson = (outDir: string) => (
+  data: PackageJsonModel,
 ): Promise<void> =>
-  ensureDirExists(config).then(() =>
-    config.ioAdapter.writeFileSync(
-      buildPublishPackageJsonPath(config.outDir)(config.ioAdapter.cwd),
+  ensureDirExists(outDir).then(() =>
+    promises.writeFile(
+      buildPublishPackageJsonPath(outDir),
       stringifyPackageJson(data),
-      { flag: 'w' },
     ),
   );
 
-const ensureDirExists = (config: GeneratorConfigModel): Promise<void> =>
-  mkdirAsync(config.outDir)(config.ioAdapter.mkdir).catch(
-    ignoreErrorIfFolderExists,
-  );
-
-const ignoreErrorIfFolderExists = (
-  error: NodeJS.ErrnoException,
-): Promise<void> =>
-  error.errno !== FOLDER_ALREAD_EXISTS_ERROR_NUMBER
-    ? Promise.reject(error)
-    : Promise.resolve();
-
-const stringifyPackageJson = (data: unknown): string =>
+const stringifyPackageJson = (data: PackageJsonModel): string =>
   JSON.stringify(data, null, 2);

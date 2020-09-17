@@ -1,8 +1,4 @@
-import {
-  DEFAULT_OUT_DIR,
-  DEFAULT_PUBLISH_CONFIG_FILE_NAME,
-  DEFAULT_IO_ADAPTER,
-} from './defaults';
+import { DEFAULT_OUT_DIR, DEFAULT_PUBLISH_CONFIG_FILE_NAME } from './defaults';
 import { logSuccess, logError } from './logger/log-messages';
 import { preparePublishPackageJson } from './ppjg';
 import {
@@ -15,19 +11,13 @@ import { GeneratorConfigModel } from './generator-config.model';
 export async function generatePublishPackageJson(
   config?: Partial<GeneratorConfigModel>,
 ): Promise<void> {
-  const mergedConfig: GeneratorConfigModel = {
-    publishConfigFileName:
-      config?.publishConfigFileName || DEFAULT_PUBLISH_CONFIG_FILE_NAME,
-    outDir: config?.outDir || DEFAULT_OUT_DIR,
-    ioAdapter: config?.ioAdapter || DEFAULT_IO_ADAPTER,
-  };
+  const configFileName =
+    config?.publishConfigFileName || DEFAULT_PUBLISH_CONFIG_FILE_NAME;
+  const outDirName = config?.outDir || DEFAULT_OUT_DIR;
 
-  return Promise.all([
-    readPackageJson(mergedConfig),
-    readPublishConfig(mergedConfig),
-  ])
+  return Promise.all([readPackageJson(), readPublishConfig(configFileName)])
     .then(preparePublishPackageJson)
-    .then(writePackageJson(mergedConfig))
+    .then(writePackageJson(outDirName))
     .then(logSuccess)
     .catch(logError);
 }
