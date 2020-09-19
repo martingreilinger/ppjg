@@ -1,4 +1,4 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -27,7 +27,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: [{ loader: 'ts-loader' }],
+        use: [{loader: 'ts-loader'}],
         exclude: /(node_modules|.*mock.*)/,
       },
     ],
@@ -45,7 +45,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyPlugin({ patterns: ['LICENSE', 'README.md'] }),
+    new CopyPlugin({patterns: ['LICENSE', 'README.md', './src/index.d.ts']}),
     new webpack.BannerPlugin({
       banner: '#!/usr/bin/env node',
       raw: true,
