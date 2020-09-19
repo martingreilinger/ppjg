@@ -1,6 +1,6 @@
 {
   "name": "ppjg",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Small `package.json` generator for publishing by omitting development bloat",
   "scripts": {
     "build": "npm run verify && npm run bundle && npm run ppjg",
