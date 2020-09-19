@@ -45,7 +45,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyPlugin({patterns: ['LICENSE', 'README.md', './src/index.d.ts']}),
+    new CopyPlugin({patterns: ['LICENSE', 'README.adoc', './src/index.d.ts']}),
     new webpack.BannerPlugin({
       banner: '#!/usr/bin/env node',
       raw: true,
