@@ -1,6 +1,6 @@
 # Publish Package JSON Generator [WIP]
 
-[![npm](https://img.shields.io/npm/v/ppjg)](https://www.npmjs.com/package/ppjg) [![NPM](https://img.shields.io/npm/l/ppjg)](https://lbesson.mit-license.org/)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/martingreilinger/ppjg/CI)](https://github.com/martingreilinger/ppjg/actions?query=workflow%3ACI) [![npm](https://img.shields.io/npm/v/ppjg)](https://www.npmjs.com/package/ppjg) [![NPM](https://img.shields.io/npm/l/ppjg)](https://lbesson.mit-license.org/)
 
 Generate a dedicated `package.json` for publishing without development bloat.
 
