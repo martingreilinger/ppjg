@@ -35,29 +35,19 @@ VERSION='V1' npx ppjg
 
 The publish-configuration defines which properties of the projects `package.json` are kept and which will be overwritten.
 By default, the publish-configuration is defined inside the `ppj.config.js`.
-To provide a differently named configuration, see the <<_generator_configuration>> section.
+To provide a differently named configuration, see the [Generator Configuration](#the-generator-configuration) section.
 
-The publish-configuration has two main properties:
+Property | Description | Config Property
+---------|-------------|----------------
+`persist`| An array of property names which will be kept inside the publish-configuration| `{ persist: ['author', 'name'] }` 
+`alter`  | An object of new or altered properties and their values| `{ alter: { bin: './cli.js' } }` 
 
-- `persist` - an array of property names which will be kept inside the publish-configuration
-- `alter` - an object of new or altered properties and their values
-
-[#_generator_configuration]
 ### The Generator Configuration
 
-#### Output Directory
-
-Defines the location of the generated `package.json`
-
-- CLI flags: `-o, --outDir DIRECTORY`
-- Programmatically: `{ outDir: DIRECTORY }`
-
-#### Publish Config File
-
-File name of the config used for the generation
-
-- CLI flags: `-c, --config FILE`
-- Programmatically: `{publishConfigFileName: FILE}`
+Property | Description | CLI Flag | Config Property
+---------|-------------|----------|----------------
+Output Directory|Defines the location of the generated `package.json`|`-o, --outDir DIRECTORY`|`{ outDir: DIRECTORY }`
+Publish Config File|File name of the config used for the generation|`-c, --config FILE`|`{publishConfigFileName: FILE}`
 
 ## Usage
 
