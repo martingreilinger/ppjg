@@ -12,8 +12,12 @@ jobs:
     steps:  
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - uses: IgnusG/jest-report-action@v2.3.3
+        if: always()
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: npm ci
       - name: Build the package
-        run: npm run build
+        run: npm run build:ci
