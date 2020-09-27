@@ -1,4 +1,4 @@
-# Publish Package JSON Generator [WIP]
+# Publish Package JSON Generator
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/martingreilinger/ppjg/CI)](https://github.com/martingreilinger/ppjg/actions?query=workflow%3ACI) [![npm](https://img.shields.io/npm/v/ppjg)](https://www.npmjs.com/package/ppjg) [![NPM](https://img.shields.io/npm/l/ppjg)](https://lbesson.mit-license.org/)
 
@@ -14,8 +14,8 @@ Generate a dedicated `package.json` for publishing without development bloat.
 ````shell script
 node i -D ppjg
 ````
-- Create a new publish config called `ppj.config.js` in your project root directory
-- Define which `package.json` keys to persist and which to override:
+- Create a new _publish config_ called `ppj.config.js` in your project root directory
+- Define which `package.json` keys to _persist_ and which to _override_:
 ````javascript
 module.exports = {
   persist: ['author', 'dependencies'],
@@ -28,7 +28,16 @@ module.exports = {
 ````shell script
 VERSION='V1' npx ppjg
 ````
-
+- Generated example `./out/package.json`
+````json
+{
+  "author": "John Doe",
+  "dependencies": {
+    "example": "1.0.0"
+  },
+  "version": "V1"
+}
+````
 ## Configuration
 
 ### The Publish-Configuration
@@ -81,8 +90,10 @@ npm run generatePPJ
 ### Programmatically
 
 - It is also possible to invoke the generator function directly:
-````javascript
-import { generatePublishPackageJson } from 'ppjg';
+````typescript
+import { generatePublishPackageJson, GeneratorConfigModel } from 'ppjg';
 
-generatePublishPackageJson();
+const config: Partial<GeneratorConfigModel> | undefined = { /* optional config data */ }
+
+generatePublishPackageJson(config);
 ````
