@@ -1,6 +1,6 @@
 {
   "name": "ppjg",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "description": "Remove development bloat form your published package.json",
   "scripts": {
     "build": "npm run verify && npm run bundle",
