@@ -24,6 +24,11 @@
       "pre-commit": "npm run lint:fix"
     }
   },
+  "jest-junit": {
+    "suiteNameTemplate": "{filepath}",
+    "classNameTemplate": "{classname}",
+    "titleTemplate": "{title}"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/martingreilinger/ppjg.git"
