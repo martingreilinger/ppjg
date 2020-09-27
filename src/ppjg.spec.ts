@@ -1,4 +1,4 @@
-import { preparePublishPackageJson } from './ppjg';
+import {preparePublishPackageJson} from './ppjg';
 
 describe('ppjg', () => {
   const packageJson = {
@@ -6,7 +6,7 @@ describe('ppjg', () => {
     version: '2.0.0',
   };
 
-  test('will generate an empty package.json if no ppjg config options are provided', () => {
+  it('will generate an empty package.json if no ppjg config options are provided', () => {
     const ppjConfig = {};
 
     const publishPackageJson = preparePublishPackageJson([
@@ -17,7 +17,7 @@ describe('ppjg', () => {
     expect(publishPackageJson).toStrictEqual({});
   });
 
-  test('will persist configured properties', () => {
+  it('will persist configured properties', () => {
     const ppjConfig = {
       persist: ['name'],
     };
@@ -27,10 +27,10 @@ describe('ppjg', () => {
       ppjConfig,
     ]);
 
-    expect(publishPackageJson).toStrictEqual({ name: 'test' });
+    expect(publishPackageJson).toStrictEqual({name: 'test'});
   });
 
-  test('will alter configured properties', () => {
+  it('will alter configured properties', () => {
     const ppjConfig = {
       alter: {
         version: '3.0.1-beta',
@@ -42,10 +42,10 @@ describe('ppjg', () => {
       ppjConfig,
     ]);
 
-    expect(publishPackageJson).toStrictEqual({ version: '3.0.1-beta' });
+    expect(publishPackageJson).toStrictEqual({version: '3.0.1-beta'});
   });
 
-  test('will generate a new publish json based on the provided config', () => {
+  it('will generate a new publish json based on the provided config', () => {
     const ppjConfig = {
       persist: ['name', 'version'],
       alter: {
